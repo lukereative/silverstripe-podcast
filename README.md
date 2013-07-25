@@ -9,7 +9,7 @@ A module for adding a podcast or multiple podcasts to your SilverStripe site. Wi
 ## Installation
 
 1. Download the Podcast module and place it in your site root. Ensure the module folder name is 'podcast'.
-2. Visit your site at `http://example.co.nz/dev/build to rebuild the database.
+2. Visit your site at `http://example.co.nz/dev/build` to rebuild the database.
 3. You will now be able to add a new page type 'Podcast Page'
 
 ## Usage

@@ -3,6 +3,7 @@
 	"description": "A module for adding a podcast or multiple podcasts to your SilverStripe site. With support for audio, video or other files.",
 	"type": "silverstripe-module",
 	"keywords": ["silverstripe", "podcast"],
+	"license": "MIT",
 	"authors": [{
 		"name": "Luke Edwards",
 		"email": "luke@lukeedwards.co.nz"
