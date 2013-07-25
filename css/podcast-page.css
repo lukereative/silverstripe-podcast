@@ -1,0 +1,30 @@
+.PodcastPage .podcast-episodes {
+	margin: 0;
+	
+	list-style: none;
+}
+
+.PodcastPage .episode {
+	padding: 1em 0;
+	
+	border-bottom: 1px solid #333;
+	overflow: hidden;
+}
+
+.PodcastPage .episode:last-child {
+	border-bottom: none;
+}
+
+.PodcastPage .episode-details {
+	display: block;
+	
+	margin-bottom: 1em;
+}
+
+.PodcastPage .episode-media {
+	float: left;
+}
+
+.PodcastPage .episode-pagination {
+	text-align: center;
+}

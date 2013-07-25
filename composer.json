@@ -1,0 +1,14 @@
+{
+	"name": "lukereative/silverstripe-podcast",
+	"description": "A module for adding a podcast or multiple podcasts to your SilverStripe site. With support for audio, video or other files.",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe", "podcast"],
+	"authors": [{
+		"name": "Luke Edwards",
+		"email": "luke@lukeedwards.co.nz"
+	}],
+	"require": {
+		"silverstripe/framework": ">=3.1.x-dev,<4.0",
+		"silverstripe/cms": ">=3.1.x-dev,<4.0"
+	}
+}
