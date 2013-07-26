@@ -44,7 +44,7 @@ class PodcastEpisode extends DataObject {
 		$fields->fieldByName('Root.Main.EpisodeDate')->dateField->setConfig('dateformat', 'dd/MM/YYYY');
 		$fields->fieldByName('Root.Main.EpisodeDate')->timeField->setConfig('timeformat', 'HH:MM');
 		$fields->fieldByName('Root.Main.EpisodeDate')->setDescription('Date when the episode was published.');
-		$fields->fieldByName('Root.Main.EpisodeDate')->setValue(date(r));
+		$fields->fieldByName('Root.Main.EpisodeDate')->setValue(date('r'));
 		
 		$fields->fieldByName('Root.Main.BlockEpisode')->setDescription('Prevent the <strong>episode</strong> from appearing in the iTunes podcast directory.');
 		$fields->fieldByName('Root.Main.ExplicitEpisode')->setDescription("Displays an 'Explicit', 'Clean' or no parental advisory graphic next to your episode in iTunes.");
