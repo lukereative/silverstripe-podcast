@@ -116,12 +116,11 @@ class PodcastEpisode extends DataObject {
 			,'avi' => 'video/x-msvideo'
 			,'3gp' => 'video/3gpp'
 		);
-
-		$extension = strtolower(end(explode('.', $filename)));
-
-		return $mime_types[$extension];
+        $path_parts = pathinfo($filename);
+		
+		return $mime_types[$path_parts['extension']];
 	}
-	
+
 	/**
 	* Returns the type for page template for audio, video tags or download link
 	* @return string
@@ -142,9 +141,8 @@ class PodcastEpisode extends DataObject {
 			,'avi' => 'video'
 			,'3gp' => 'video'
 		);
+        $path_parts = pathinfo($filename);
 
-		$extension = strtolower(end(explode('.', $filename)));
-
-		return $mime_types[$extension];
+		return $mime_types[$path_parts['extension']];
 	}
 }
