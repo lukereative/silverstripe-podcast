@@ -208,7 +208,12 @@ class PodcastPage_Controller extends Page_Controller {
 	 * @return SS_List
 	 */
 	public function podcastEpisodes() {
-		return PodcastEpisode::get()->sort('EpisodeDate', 'DESC');
+		return PodcastEpisode::get()
+		        ->filter(array(
+				    'BlockEpisode' => '0',
+				    'PodcastPageID'  =>  $this->ID
+				))
+				->sort('EpisodeDate', 'DESC');
 	}
 	
 
@@ -219,7 +224,10 @@ class PodcastPage_Controller extends Page_Controller {
 	public function paginatedPodcastEpisodes() {
 		$paginatedList = new PaginatedList(
 			PodcastEpisode::get()
-				->filter(array('BlockEpisode' => '0'))
+				->filter(array(
+				    'BlockEpisode' => '0',
+				    'PodcastPageID'  =>  $this->ID
+				))
 				->sort('EpisodeDate', 'DESC')
 				, $this->request
 		);
