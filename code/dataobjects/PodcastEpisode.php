@@ -94,6 +94,7 @@ class PodcastEpisode extends DataObject {
 	*/
 	public function getMime() {
 		$filename = $this->EpisodeFile()->getFilename();
+		$filename = explode('.', $filename);
 		
 		$mime_types = array(
 			'pdf' => 'application/pdf'
@@ -117,7 +118,7 @@ class PodcastEpisode extends DataObject {
 			,'3gp' => 'video/3gpp'
 		);
 
-		$extension = strtolower(end(explode('.', $filename)));
+		$extension = strtolower(end($filename));
 
 		return $mime_types[$extension];
 	}
@@ -128,6 +129,7 @@ class PodcastEpisode extends DataObject {
 	*/
 	public function getType() {
 		$filename = $this->EpisodeFile()->getFilename();
+		$filename = explode('.', $filename);
 		
 		$mime_types = array(
 			'mp3' => 'audio'
@@ -143,7 +145,7 @@ class PodcastEpisode extends DataObject {
 			,'3gp' => 'video'
 		);
 
-		$extension = strtolower(end(explode('.', $filename)));
+		$extension = strtolower(end($filename));
 
 		return $mime_types[$extension];
 	}
