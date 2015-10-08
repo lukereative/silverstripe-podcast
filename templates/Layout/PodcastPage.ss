@@ -1,4 +1,5 @@
-<div class="podcast">
+<% include PodcastRequirements %>
+div class="podcast">
 	<header class="podcast-details">
 		<% if $PodcastTitle %><h1>$PodcastTitle</h1><% end_if %>
 		<% if $PodcastImage %><% with PodcastImage.setWidth(200) %><img src="$URL" alt="$Title" class="left"><% end_with %><% end_if %>

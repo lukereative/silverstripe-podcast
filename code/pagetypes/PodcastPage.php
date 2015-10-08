@@ -179,16 +179,11 @@ class PodcastPage extends Page {
 }
 
 class PodcastPage_Controller extends Page_Controller {
-	public static $allowed_actions = array('rss', 'episode');
+	private static $allowed_actions = array(
+		'rss', 'episode'
+	);
 
 	public function init() {
-		// Adds the requirements for the Podcast and Episode Page in the correct order
-		Requirements::javascript('framework/thirdparty/jquery/jquery.js');
-		Requirements::javascript('podcast/thirdparty/mediaelement/mediaelement-and-player.min.js');
-		Requirements::javascript('podcast/javascript/podcast-page.js');
-		Requirements::css('podcast/thirdparty/mediaelement/mediaelementplayer.min.css');
-		Requirements::css('podcast/css/podcast-page.css');
-		
 		// Provides a link to the Podcast RSS in the HTML head
 		RSSFeed::linkToFeed($this->Link('rss'));
 		
@@ -237,6 +232,6 @@ class PodcastPage_Controller extends Page_Controller {
 	public function episode() {
 		$episode = PodcastEpisode::get()->byID($this->Request->param("ID"));
 		if(!$episode) return $this->httpError(404);
-		return $this->customise(array("PodcastEpisode" => $episode))->renderWith(array("PodcastEpisode", "Page"));
+		return array("PodcastEpisode" => $episode);
 	}
 }
