@@ -10,8 +10,8 @@
 <% if $Subtitle %><itunes:subtitle>$Subtitle.XML</itunes:subtitle><% end_if %>
 <% if $Author %><itunes:author>$Author.XML</itunes:author><% end_if %>
 <% if $Summary %>
-<itunes:summary>$Summary.XML</itunes:summary>
-<description>$Summary.XML</description>
+<itunes:summary>$Summary.NoHTML.XML</itunes:summary>
+<description>$Summary.NoHTML.XML</description>
 <% end_if %>
 <% if $OwnerName || $OwnerEmail %>
 <itunes:owner>
@@ -30,8 +30,8 @@
 	<% if $EpisodeAuthor %><itunes:author>$EpisodeAuthor.XML</itunes:author><% end_if %>
 	<% if $EpisodeSubtitle %><itunes:subtitle>$EpisodeSubtitle.XML</itunes:subtitle><% end_if %>
 	<% if $EpisodeSummary %>
-	<itunes:summary>$EpisodeSummary.XML</itunes:summary>
-	<description>$EpisodeSummary.XML</description>
+	<itunes:summary>$EpisodeSummary.NoHTML.XML</itunes:summary>
+	<description>$EpisodeSummary.NoHTML.XML</description>
 	<% end_if %>
 	<% if $EpisodeKeywords %><itunes:keywords>$Keywords.XML</itunes:keywords><% end_if %>
 	<% if $EpisodeImage %><itunes:image href="$EpisodeImage.getAbsoluteURL" /><% end_if %>

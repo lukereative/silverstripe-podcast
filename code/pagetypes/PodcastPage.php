@@ -5,14 +5,14 @@ class PodcastPage extends Page {
 	private static $description = 'A page that allows the input of podcast information and the addition of episodes to generate a working podcast with a generated RSS Feed';
 
 	private static $db = array(
-		'PodcastTitle' => 'VarChar'
-		,'Subtitle' => 'VarChar'
-		,'Language' => 'VarChar'
-		,'Author' => 'VarChar'
-		,'Summary' => 'Text'
-		,'OwnerName' => 'VarChar'
-		,'OwnerEmail' => 'VarChar'
-		,'Copyright' => 'VarChar'
+		'PodcastTitle' => 'VarChar(255)'
+		,'Subtitle' => 'VarChar(255)'
+		,'Language' => 'VarChar(32)'
+		,'Author' => 'VarChar(127)'
+		,'Summary' => 'HTMLText'
+		,'OwnerName' => 'VarChar(127)'
+		,'OwnerEmail' => 'VarChar(127)'
+		,'Copyright' => 'VarChar(127)'
 		,'Complete' => 'Boolean'
 		,'Block' => 'Boolean'
 		,'Explicit' => 'enum("No, Clean, Yes");'
