@@ -128,8 +128,10 @@ class PodcastEpisode extends DataObject {
 	* @return string
 	*/
 	public function getType() {
-		$filename = $this->EpisodeFile()->getFilename();
-		$filename = explode('.', $filename);
+		// return an empty string if there's no file
+		if(!$this->EpisodeFileID){
+			return '';
+		}
 		
 		$mime_types = array(
 			'mp3' => 'audio'
@@ -145,7 +147,7 @@ class PodcastEpisode extends DataObject {
 			,'3gp' => 'video'
 		);
 
-		$extension = strtolower(end($filename));
+		$extension = strtolower($this->EpisodeFile()->getExtension());
 
 		return $mime_types[$extension];
 	}

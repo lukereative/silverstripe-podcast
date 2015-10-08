@@ -221,7 +221,7 @@ class PodcastPage_Controller extends Page_Controller {
 	 */
 	public function paginatedPodcastEpisodes() {
 		$paginatedList = new PaginatedList(
-			podcastEpisodes()
+			$this->podcastEpisodes()
 				->filter(array('BlockEpisode' => '0'))
 				->sort('EpisodeDate', 'DESC')
 				, $this->request
