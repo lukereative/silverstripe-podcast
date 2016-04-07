@@ -1,3 +1,4 @@
+<% include PodcastRequirements %>
 <div class="PodcastEpisode">
 <% with PodcastEpisode %><% if not $BlockEpisode %>
 	<% if $EpisodeTitle %><h1>$EpisodeTitle</h1><% end_if %>
