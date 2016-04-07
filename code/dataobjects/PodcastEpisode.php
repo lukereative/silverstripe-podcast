@@ -8,10 +8,10 @@ class PodcastEpisode extends DataObject {
 	);
 
 	private static $db = array(
-		'EpisodeTitle' => 'VarChar'
-		,'EpisodeSubtitle' => 'VarChar'
-		,'EpisodeSummary' => 'Text'
-		,'EpisodeAuthor' => 'VarChar'
+		'EpisodeTitle' => 'VarChar(255)'
+		,'EpisodeSubtitle' => 'VarChar(255)'
+		,'EpisodeSummary' => 'HTMLText'
+		,'EpisodeAuthor' => 'VarChar(127)'
 		,'BlockEpisode' => 'Boolean'
 		,'ExplicitEpisode' => 'enum("No, Clean, Yes");'
 		,'EpisodeDate' => 'SS_Datetime'
