@@ -6,11 +6,12 @@
 	"license": "MIT",
 	"authors": [{
 		"name": "Luke Edwards",
-		"email": "luke@lukeedwards.co.nz"
+		"email": "luke@edwards.co.nz"
 	}],
 	"require": {
-		"silverstripe/framework": "3.1.*",
-		"silverstripe/cms": "3.1.*"
+		"silverstripe/framework": "~3.4",
+		"silverstripe/cms": "~3.4",
+		"james-heinrich/getid3": "~1.9.12"
 	},
 	"extra": {
 		"installer-name": "podcast"

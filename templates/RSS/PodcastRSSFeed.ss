@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
 <channel>
 <atom:link href="{$AbsoluteLink}rss" rel="self" type="application/rss+xml" />
 
@@ -20,7 +20,6 @@
 </itunes:owner>
 <% end_if %>
 <% if $PodcastImage %><itunes:image href="$PodcastImage.getAbsoluteURL" /><% end_if %>
-<% if $Keywords %><itunes:keywords>$Keywords.XML</itunes:keywords><% end_if %>
 <% if $Block %><itunes:block>yes</itunes:block><% end_if %>
 <% if $Explicit %><itunes:explicit>$Explicit</itunes:explicit><% end_if %>
 
@@ -33,7 +32,6 @@
 	<itunes:summary>$EpisodeSummary.NoHTML.XML</itunes:summary>
 	<description>$EpisodeSummary.NoHTML.XML</description>
 	<% end_if %>
-	<% if $EpisodeKeywords %><itunes:keywords>$Keywords.XML</itunes:keywords><% end_if %>
 	<% if $EpisodeImage %><itunes:image href="$EpisodeImage.getAbsoluteURL" /><% end_if %>
 	<% if $EpisodeFile %><enclosure url="$EpisodeFile.getAbsoluteURL" length="$EpisodeFile.getAbsoluteSize" type="$getMime" />
 	<guid>$EpisodeLink</guid><%end_if %>

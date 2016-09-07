@@ -4,7 +4,7 @@ A module for adding a podcast or multiple podcasts to your SilverStripe site. Wi
 
 ## Requirements
 
-* SilverStripe 3.1
+* SilverStripe 3.4
 
 ## Installation
 
