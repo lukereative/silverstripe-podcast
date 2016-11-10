@@ -123,6 +123,15 @@ class PodcastEpisode extends DataObject
     }
 
     /**
+    * Returns the relative link to the episode's page
+    * @return string
+    */
+    public function relativeEpisodeLink()
+    {
+        return $this->PodcastPage()->RelativeLink('episode/' . $this->ID);
+    }
+
+    /**
     * Returns a thumbnail of the Episode Image
     * @return Image
     */

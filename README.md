@@ -27,4 +27,4 @@ The podcast page uses [mediaelement.js](http://mediaelementjs.com/) to support c
 Mediaelement.js was the best solution I could find for supporting single video/audio files over multiple browsers, but feel free to edit the module to use your own solution.
 
 ## Contact
-Feel free to email me at <luke@lukeedwards.co.nz> with any suggestions, comments or to say thanks. Log any issues on the [GitHub repository](https://github.com/lukereative/silverstripe-podcast) or feel free to issue a pull request with a fix.
+Feel free to email me at <luke@silverstripe.com> with any suggestions, comments or to say thanks. Log any issues on the [GitHub repository](https://github.com/lukereative/silverstripe-podcast) or feel free to issue a pull request with a fix.
