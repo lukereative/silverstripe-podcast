@@ -17,7 +17,7 @@ class PodcastPage extends Page implements PermissionProvider
         ,'Complete' => 'Boolean'
         ,'Block' => 'Boolean'
         ,'Explicit' => 'enum("No, Clean, Yes");'
-        ,'Keywords' => 'Text'
+        ,'Categories' => 'Text'
     );
 
     private static $has_one = array(
@@ -161,7 +161,7 @@ class PodcastPage extends Page implements PermissionProvider
             ,$completeField
             ,$blockField
             ,$explicitField
-            ,TextAreaField::create('Keywords')
+            ,TextAreaField::create('Categories')
             ,$podcastImage
         ));
 
@@ -231,6 +231,7 @@ class PodcastPage_Controller extends Page_Controller
      */
     public function rss()
     {
+        $this->response->addHeader("Content-Type", "application/xml");
         return $this->renderWith("PodcastRSSFeed");
     }
 
