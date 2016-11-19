@@ -3,7 +3,7 @@
 <channel>
 <atom:link href="{$AbsoluteLink}rss" rel="self" type="application/rss+xml" />
 
-<% if $Title %><title>$Title</title><% end_if %>
+<% if $PodcastTitle %><title>$PodcastTitle.XML</title><% end_if %>
 <link>$AbsoluteLink</link>
 <% if $Language %><language>$Language</language><% end_if %>
 <% if $Copyright %><copyright>$Copyright.XML</copyright><% end_if %>
