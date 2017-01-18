@@ -22,9 +22,7 @@ A module for adding a podcast or multiple podcasts to your SilverStripe site. Wi
 
 ## Third Party
 
-The podcast page uses [mediaelement.js](http://mediaelementjs.com/) to support cross browser playing of HTML5 `<audio>` and `<video>` elements. Not all browsers support all video/audio codecs, so it may not play in some browsers – although there is a link provided for each episode to be downloaded just in case.
-
-Mediaelement.js was the best solution I could find for supporting single video/audio files over multiple browsers, but feel free to edit the module to use your own solution.
+The podcast page uses [plyr.js](https://plyr.io/) to support cross browser playing of HTML5 `<audio>` and `<video>` elements. Not all browsers support all video/audio codecs, so it may not play in some browsers – although there is a link provided for each episode to be downloaded just in case.
 
 ## Contact
 Feel free to email me at <luke@silverstripe.com> with any suggestions, comments or to say thanks. Log any issues on the [GitHub repository](https://github.com/lukereative/silverstripe-podcast) or feel free to issue a pull request with a fix.

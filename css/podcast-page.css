@@ -1,30 +1,30 @@
-.PodcastPage .podcast-episodes {
-	margin: 0;
-	
-	list-style: none;
+.PodcastPage .podcast__episode__list {
+    margin: 0;
+
+    list-style: none;
 }
 
 .PodcastPage .episode {
-	padding: 1em 0;
-	
-	border-bottom: 1px solid #333;
-	overflow: hidden;
+    padding: 1em 0;
+
+    border-bottom: 1px solid #333;
+    overflow: hidden;
 }
 
-.PodcastPage .episode:last-child {
-	border-bottom: none;
+.PodcastPage .episode__image {
+    float: left;
+    margin-right: 1em;
 }
 
-.PodcastPage .episode-details {
-	display: block;
-	
-	margin-bottom: 1em;
+.PodcastPage li:last-child .episode {
+    border-bottom: none;
 }
 
-.PodcastPage .episode-media {
-	float: left;
-}
+.PodcastPage .episode__info {
+    overflow: hidden;
 
-.PodcastPage .episode-pagination {
-	text-align: center;
+    margin-bottom: 1em;
+}
+.PodcastPage .podcast__pagination {
+    text-align: center;
 }

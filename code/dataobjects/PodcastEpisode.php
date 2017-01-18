@@ -65,24 +65,13 @@ class PodcastEpisode extends DataObject
             ->setFolderName('podcast/episodes')
             ->getValidator()->setAllowedExtensions(array(
                 'pdf',
-                'zip',
-                'doc',
-                'docx',
-                'xls',
-                'xlsx',
-                'ppt',
-                'pptx',
+                'epub',
                 'mp3',
                 'wav',
                 'm4a',
                 'm4v',
-                'mpeg',
-                'mpg',
                 'mp4',
-                'mpe',
                 'mov',
-                'avi',
-                '3gp',
             ));
 
         $fields->fieldByName('Root.Main.EpisodeImage')
@@ -146,29 +135,23 @@ class PodcastEpisode extends DataObject
     */
     public function getMime()
     {
+        // return an empty string if there's no file
+        if (!$this->EpisodeFileID) {
+            return '';
+        }
+
         $filename = $this->EpisodeFile()->getFilename();
         $filename = explode('.', $filename);
 
         $mime_types = array(
             'pdf' => 'application/pdf',
-            'zip' => 'application/zip',
-            'doc' => 'application/msword',
-            'docx' => 'application/msword',
-            'xls' => 'application/vnd.ms-excel',
-            'xlsx' => 'application/vnd.ms-excel',
-            'ppt' => 'application/vnd.ms-powerpoint',
-            'pptx' => 'application/vnd.ms-powerpoint',
+            'epub' => 'document/x-epub',
             'mp3' => 'audio/mpeg',
             'wav' => 'audio/x-wav',
             'm4a' => 'audio/x-m4a',
             'm4v' => 'video/x-m4v',
-            'mpeg' => 'video/mpeg',
-            'mpg' => 'video/mpeg',
-            'mp4' => 'video/mpeg',
-            'mpe' => 'video/mpeg',
+            'mp4' => 'video/mp4',
             'mov' => 'video/quicktime',
-            'avi' => 'video/x-msvideo',
-            '3gp' => 'video/3gpp',
         );
 
         $extension = strtolower(end($filename));
@@ -182,28 +165,12 @@ class PodcastEpisode extends DataObject
     */
     public function getType()
     {
-        // return an empty string if there's no file
         if (!$this->EpisodeFileID) {
             return '';
         }
+        $mime = explode('/', $this->getMime());
 
-        $mime_types = array(
-            'mp3' => 'audio'
-            ,'wav' => 'audio'
-            ,'m4a' => 'audio'
-            ,'m4v' => 'video'
-            ,'mpeg' => 'video'
-            ,'mpg' => 'video'
-            ,'mp4' => 'video'
-            ,'mpe' => 'video'
-            ,'mov' => 'video'
-            ,'avi' => 'video'
-            ,'3gp' => 'video'
-        );
-
-        $extension = strtolower($this->EpisodeFile()->getExtension());
-
-        return $mime_types[$extension];
+        return $mime[0];
     }
 
     public function getTags()
