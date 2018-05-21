@@ -1,0 +1,7 @@
+---
+Name: lukereative/podcast
+---
+
+SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest:
+  extensions:
+    - Lukereative\Podcast\Extensions\GetID3Tags
