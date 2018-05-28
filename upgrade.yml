@@ -1,0 +1,4 @@
+mappings:
+  PodcastEpisode: Lukereative\Podcast\Model\PodcastEpisode
+  PodcastPage: SilverStripe\FrameworkTest\Model\PodcastPage
+  PodcastPage_Controller: Lukereative\Podcast\Control\PodcastPageController

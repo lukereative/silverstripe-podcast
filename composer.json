@@ -1,19 +1,32 @@
 {
 	"name": "lukereative/silverstripe-podcast",
 	"description": "A module for adding a podcast or multiple podcasts to your SilverStripe site. With support for audio, video or other files.",
-	"type": "silverstripe-module",
-	"keywords": ["silverstripe", "podcast"],
-	"license": "MIT",
+	"type": "silverstripe-vendormodule",
+	"keywords": [
+        "silverstripe",
+        "podcast"
+    ],
+	"license": "BSD-3-Clause",
 	"authors": [{
 		"name": "Luke Edwards",
-		"email": "luke@edwards.co.nz"
-	}],
+        "email": "luke@silverstripe.com"
+    }],
 	"require": {
-		"silverstripe/framework": "~3.4",
-		"silverstripe/cms": "~3.4",
-		"james-heinrich/getid3": "~1.9.12"
-	},
-	"extra": {
-		"installer-name": "podcast"
-	}
+		"silverstripe/framework": "^4.1",
+		"silverstripe/cms": "^4.1",
+		"phansys/getid3": "^2.1@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lukereative\\Podcast\\": "src/"
+        }
+    },
+    "extra": {
+        "expose": [
+            "client/dist",
+            "images"
+        ]
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
 }

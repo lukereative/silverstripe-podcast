@@ -1,38 +1,67 @@
 <?php
 
+namespace Lukereative\Podcast\Model;
+
+use Page;
+use Lukereative\Podcast\Control\PodcastPageController;
+use Lukereative\Podcast\Model\PodcastEpisode;
+use SilverStripe\AssetAdmin\Forms\UploadField;
+use SilverStripe\Assets\Image;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\EmailField;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
+use SilverStripe\Forms\TextAreaField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Security\Permission;
+use SilverStripe\Security\PermissionProvider;
+
 class PodcastPage extends Page implements PermissionProvider
 {
-    private static $icon = 'podcast/images/podcast-page.png';
+    private static $table_name = 'PodcastPage';
+
+    private static $icon = 'lukereative/silverstripe-podcast:images/podcast-page.svg';
+
     private static $description = 'A page that allows the input of podcast information and the addition of episodes to generate a working podcast with a generated RSS Feed';
 
-    private static $db = array(
-        'PodcastTitle' => 'VarChar(255)'
-        ,'Subtitle' => 'VarChar(255)'
-        ,'Language' => 'VarChar(32)'
-        ,'Author' => 'VarChar(127)'
-        ,'Summary' => 'HTMLText'
-        ,'OwnerName' => 'VarChar(127)'
-        ,'OwnerEmail' => 'VarChar(127)'
-        ,'Copyright' => 'VarChar(127)'
-        ,'Complete' => 'Boolean'
-        ,'Block' => 'Boolean'
-        ,'Explicit' => 'enum("No, Clean, Yes");'
-        ,'Categories' => 'Text'
-    );
+    private static $db = [
+        'PodcastTitle' => 'Varchar(255)',
+        'Subtitle' => 'Varchar(255)',
+        'Language' => 'Varchar(32)',
+        'Author' => 'Varchar(127)',
+        'Summary' => 'HTMLText',
+        'OwnerName' => 'Varchar(127)',
+        'OwnerEmail' => 'Varchar(127)',
+        'Copyright' => 'Varchar(127)',
+        'Complete' => 'Boolean',
+        'Block' => 'Boolean',
+        'Explicit' => 'Enum("No, Clean, Yes");',
+        'Categories' => 'Text',
+    ];
 
-    private static $has_one = array(
-        'PodcastImage' => 'Image'
-    );
+    private static $has_one = [
+        'PodcastImage' => Image::class
+    ];
 
-    private static $has_many = array(
-        'PodcastEpisodes' => 'PodcastEpisode'
-    );
+    private static $has_many = [
+        'PodcastEpisodes' => PodcastEpisode::class
+    ];
+
+    private static $owns = [
+        'PodcastImage',
+    ];
+
+    public function getControllerName()
+    {
+        return PodcastPageController::class;
+    }
 
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
 
-        $languageField = DropdownField::create('Language', 'Language', array(
+        $languageField = DropdownField::create('Language', 'Language', [
             'af' => 'Afrikaans',
             'sq' => 'Albanian',
             'eu' => 'Basque',
@@ -129,7 +158,7 @@ class PodcastPage extends Page implements PermissionProvider
             'sv-se' => 'Swedish (Sweden)',
             'tr' => 'Turkish',
             'uk' => 'Ukranian',
-        ));
+        ]);
         $languageField
             ->setHasEmptyDefault(true)
             ->setEmptyString('Select Language');
@@ -138,7 +167,7 @@ class PodcastPage extends Page implements PermissionProvider
         $podcastImage
             ->setFolderName('podcast/podcast-artwork')
             ->setDescription("iTunes recommends a size of at least 1400x1400")
-            ->getValidator()->setAllowedExtensions(array('jpg', 'png'));
+            ->getValidator()->setAllowedExtensions(['jpg', 'png']);
 
         $completeField = CheckboxField::create('Complete');
         $completeField->setDescription('This podcast is complete. No more episodes will be added to the podcast.');
@@ -149,28 +178,28 @@ class PodcastPage extends Page implements PermissionProvider
         $explicitField = DropdownField::create('Explicit', 'Explicit', $this->dbObject('Explicit')->enumValues());
         $explicitField->setDescription("Displays an 'Explicit', 'Clean' or no parental advisory graphic next to your podcast artwork in iTunes.");
 
-        $fields->addFieldsToTab('Root.Podcast', array(
-            TextField::create('PodcastTitle', 'Podcast Title')
-            ,TextField::create('Subtitle')
-            ,$languageField
-            ,TextField::create('Author')
-            ,TextAreaField::create('Summary')
-            ,TextField::create('OwnerName', 'Owner Name')
-            ,EmailField::create('OwnerEmail', 'Owner Email')
-            ,TextField::create('Copyright')
-            ,$completeField
-            ,$blockField
-            ,$explicitField
-            ,TextAreaField::create('Categories')
-            ,$podcastImage
-        ));
+        $fields->addFieldsToTab('Root.Podcast', [
+            TextField::create('PodcastTitle', 'Podcast Title'),
+            TextField::create('Subtitle'),
+            $languageField,
+            TextField::create('Author'),
+            TextAreaField::create('Summary'),
+            TextField::create('OwnerName', 'Owner Name'),
+            EmailField::create('OwnerEmail', 'Owner Email'),
+            TextField::create('Copyright'),
+            $completeField,
+            $blockField,
+            $explicitField,
+            TextAreaField::create('Categories'),
+            $podcastImage,
+        ]);
 
         $config = GridFieldConfig_RelationEditor::create();
 
         $episodesTable = GridField::create(
             'PodcastEpisodes',
             'Podcast Episodes',
-            $this->PodcastEpisodes()->sort('EpisodeDate', 'DESC'),
+            $this->PodcastEpisodes()->sort('Date', 'DESC'),
             $config
         );
 
@@ -194,87 +223,18 @@ class PodcastPage extends Page implements PermissionProvider
         return Permission::check('PODCAST_ADMIN');
     }
 
-    public function canCreate($member = null)
+    public function canCreate($member = null, $parent = null)
     {
         return Permission::check('PODCAST_ADMIN');
     }
 
     public function providePermissions()
     {
-        return array(
-            'PODCAST_ADMIN' => array(
+        return [
+            'PODCAST_ADMIN' => [
                 'name' => 'Edit and upload to podcast',
                 'category' => 'Content permissions',
-            )
-        );
-    }
-}
-
-class PodcastPage_Controller extends Page_Controller
-{
-    private static $allowed_actions = array(
-        'rss',
-        'episode',
-    );
-
-    public function init()
-    {
-        // Provides a link to the Podcast RSS in the HTML head
-        RSSFeed::linkToFeed($this->Link('rss'));
-
-        parent::init();
-    }
-
-    /**
-     * Returns the RSS Feed at the URL /rss
-     * @return SiteTree
-     */
-    public function rss()
-    {
-        $this->response->addHeader("Content-Type", "application/xml");
-        return $this->renderWith("PodcastRSSFeed");
-    }
-
-    /**
-     * Returns a SS_list of podcast episodes for use in the RSS template
-     * @return SS_List
-     */
-    public function podcastEpisodes()
-    {
-        return PodcastEpisode::get()
-            ->filter(array('PodcastPageID' => $this->ID))
-            ->sort('EpisodeDate', 'DESC')
-        ;
-    }
-
-
-    /**
-     * Returns a paginated list of podcast episodes for use on the podcast page
-     * @return SS_List
-     */
-    public function paginatedPodcastEpisodes()
-    {
-        $paginatedList = PaginatedList::create(
-            $this->podcastEpisodes()
-                ->filter(array('BlockEpisode' => '0'))
-                ->sort('EpisodeDate', 'DESC'),
-            $this->request
-        );
-        $paginatedList->setPageLength(5);
-        return $paginatedList;
-    }
-
-    /**
-     * Returns an episode as a page based on ID parameter at the URL -> $PodcastPage/episode/$ID
-     * @return SiteTree
-     */
-    public function episode(SS_HTTPRequest $request)
-    {
-        $episode = PodcastEpisode::get()->byID($request->param('ID'));
-        if (!$episode) {
-            return $this->httpError(404, 'That episode could not be found');
-        } return array(
-            'PodcastEpisode' => $episode
-        );
+            ]
+        ];
     }
 }

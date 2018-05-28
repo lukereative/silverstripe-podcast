@@ -4,7 +4,7 @@ A module for adding a podcast or multiple podcasts to your SilverStripe site. Wi
 
 ## Requirements
 
-* SilverStripe 3.4
+* SilverStripe 4.1
 
 ## Installation
 
@@ -19,10 +19,6 @@ A module for adding a podcast or multiple podcasts to your SilverStripe site. Wi
 3. Add episodes in the 'Episodes' tab by pressing the green 'Add Podcast Episode Button'. On the resulting page enter your desired episode details, attach the episode file and if you want, an episode image.
 4. Once you have added the project page, filled in details and added episodes, you will be able to view your podcast and play/view episodes at the podcast page url. Your RSS Feed http://example.co.nz/$PodcastPage/rss
 5. Single episodes are linkable/viewable at http://example.co.nz/$PodcastPage/episode/$ID – $PodcastPage being your podcast page URL and $ID being the unique ID of the podcast (viewable in the CMS)
-
-## Third Party
-
-The podcast page uses [plyr.js](https://plyr.io/) to support cross browser playing of HTML5 `<audio>` and `<video>` elements. Not all browsers support all video/audio codecs, so it may not play in some browsers – although there is a link provided for each episode to be downloaded just in case.
 
 ## Contact
 Feel free to email me at <luke@silverstripe.com> with any suggestions, comments or to say thanks. Log any issues on the [GitHub repository](https://github.com/lukereative/silverstripe-podcast) or feel free to issue a pull request with a fix.
