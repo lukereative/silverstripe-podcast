@@ -13,7 +13,7 @@ use SilverStripe\Security\Permission;
 class PodcastEpisode extends DataObject
 {
     private static $table_name = 'PodcastEpisode';
-    
+
     private static $has_one = [
         'File' => File::class,
         'Image' => Image::class,
@@ -46,7 +46,7 @@ class PodcastEpisode extends DataObject
     ];
 
     private static $summary_fields = [
-        'Thumb' => 'Image',
+        'Thumb' => '',
         'Date' => 'Date',
         'Title' => 'Title',
         'Duration' => 'Duration',
@@ -59,7 +59,7 @@ class PodcastEpisode extends DataObject
     public function populateDefaults()
     {
         parent::populateDefaults();
-        
+
         $this->Date = DBDatetime::now()->value;
     }
 
@@ -122,7 +122,7 @@ class PodcastEpisode extends DataObject
     * Returns a thumbnail of the Episode Image
     * @return Image
     */
-    public function episodeThumb()
+    public function thumb()
     {
         return $this->Image()->fill(40, 40);
     }

@@ -31,7 +31,7 @@ class PodcastPageController extends ContentController
     public function rss()
     {
         $this->response->addHeader("Content-Type", "application/xml");
-        return $this->renderWith("Lukereative\RSS\PodcastRSSFeed");
+        return $this->renderWith($this->ClassName . '_rss');
     }
 
     /**
