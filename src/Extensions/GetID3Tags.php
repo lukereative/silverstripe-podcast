@@ -79,7 +79,7 @@ class GetID3Tags extends DataExtension
             $form->loadDataFrom($data);
 
             $message = [
-                'text' => 'Successfully retrieved tags, verify or edit changes before',
+                'text' => 'Successfully retrieved tags, verify or edit changes before saving',
                 'type' => 'good',
             ];
         } else {
