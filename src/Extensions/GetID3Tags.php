@@ -3,6 +3,7 @@
 namespace Lukereative\Podcast\Extensions;
 
 use GetId3\GetId3Core;
+use Lukereative\Podcast\Model\PodcastEpisode;
 use SilverStripe\Control\Director;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\FormAction;
