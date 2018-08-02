@@ -210,7 +210,7 @@ class PodcastPage extends Page implements PermissionProvider
 
     public function canView($member = null)
     {
-        return true;
+        return Permission::check('VIEW_SITE');
     }
 
     public function canEdit($member = null)
