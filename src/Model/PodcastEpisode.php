@@ -80,57 +80,74 @@ class PodcastEpisode extends DataObject
         $fields->fieldByName('Root.Main.Explicit')
             ->setDescription("Displays an 'Explicit', 'Clean' or no parental advisory graphic next to your episode in iTunes.");
 
-        $fields->fieldByName('Root.Main.File')
-            ->setFolderName('podcast/episodes')
-            ->getValidator()->setAllowedExtensions(array(
-                'pdf',
-                'epub',
-                'mp3',
-                'wav',
-                'm4a',
-                'm4v',
-                'mp4',
-                'mov',
-            ));
+        $fileField = $fields->fieldByName('Root.Main.File');
+        $fileField->setFolderName('podcast/episodes')
+            ->getValidator()->setAllowedExtensions(
+                [
+                    'pdf',
+                    'epub',
+                    'mp3',
+                    'wav',
+                    'm4a',
+                    'm4v',
+                    'mp4',
+                    'mov',
+                ]
+            );
 
-        $fields->fieldByName('Root.Main.Image')
-            ->setFolderName('podcast/episode-images')
+        // Show a help message if the episode is not saved or it doesn't have a file added
+        if ($this->ID === 0 || !$this->File()->exists()) {
+            $fileField->setDescription(
+                "If you wish to import episode details from the file ID3 tags, first upload a file and 'Create' the episode.<br>
+                Then a 'Get ID3 tags' action will be available"
+            );
+        }
+        $fields->insertBefore('Title', $fileField);
+
+        $imageField = $fields->fieldByName('Root.Main.Image');
+        $imageField->setFolderName('podcast/episode-images')
             ->getValidator()->setAllowedExtensions(['jpg', 'png']);
+        $fields->insertBefore('Title', $imageField);
 
+        $fields->removeByName('PodcastPageID');
         return $fields;
     }
 
     /**
-    * Returns the absolute link to the episode's page
-    * @return string
-    */
+     * Returns the absolute link to the episode's page
+     *
+     * @return string
+     */
     public function episodeLink()
     {
         return $this->PodcastPage()->AbsoluteLink('episode/' . $this->ID);
     }
 
     /**
-    * Returns the relative link to the episode's page
-    * @return string
-    */
+     * Returns the relative link to the episode's page
+     *
+     * @return string
+     */
     public function relativeEpisodeLink()
     {
         return $this->PodcastPage()->RelativeLink('episode/' . $this->ID);
     }
 
     /**
-    * Returns a thumbnail of the Episode Image
-    * @return Image
-    */
+     * Returns a thumbnail of the Episode Image
+     *
+     * @return Image
+     */
     public function thumb()
     {
         return $this->Image()->fill(40, 40);
     }
 
     /**
-    * Returns mime type for use in PodcastRSS enclosure
-    * @return string
-    */
+     * Returns mime type for use in PodcastRSS enclosure
+     *
+     * @return string
+     */
     public function getMime()
     {
         // return an empty string if there's no file
@@ -158,9 +175,10 @@ class PodcastEpisode extends DataObject
     }
 
     /**
-    * Returns the type for page template for audio, video tags or download link
-    * @return string
-    */
+     * Returns the type for page template for audio, video tags or download link
+     *
+     * @return string
+     */
     public function getType()
     {
         if (!$this->FileID) {

@@ -1,20 +1,20 @@
 {
-	"name": "lukereative/silverstripe-podcast",
-	"description": "A module for adding a podcast or multiple podcasts to your SilverStripe site. With support for audio, video or other files.",
-	"type": "silverstripe-vendormodule",
-	"keywords": [
+    "name": "lukereative/silverstripe-podcast",
+    "description": "A module for adding a podcast or multiple podcasts to your SilverStripe site. With support for audio, video or other files.",
+    "type": "silverstripe-vendormodule",
+    "keywords": [
         "silverstripe",
         "podcast"
     ],
-	"license": "BSD-3-Clause",
-	"authors": [{
-		"name": "Luke Edwards",
+    "license": "BSD-3-Clause",
+    "authors": [{
+        "name": "Luke Edwards",
         "email": "luke@silverstripe.com"
     }],
-	"require": {
-		"silverstripe/framework": "^4.1",
-		"silverstripe/cms": "^4.1",
-		"phansys/getid3": "^2.1@dev"
+    "require": {
+        "silverstripe/framework": "^4.1",
+        "silverstripe/cms": "^4.1",
+        "phansys/getid3": "^2.1@dev"
     },
     "autoload": {
         "psr-4": {

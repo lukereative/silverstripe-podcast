@@ -61,7 +61,8 @@ class PodcastPage extends Page implements PermissionProvider
     {
         $fields = parent::getCMSFields();
 
-        $languageField = DropdownField::create('Language', 'Language', [
+        $languageField = DropdownField::create(
+            'Language', 'Language', [
             'af' => 'Afrikaans',
             'sq' => 'Albanian',
             'eu' => 'Basque',
@@ -158,7 +159,8 @@ class PodcastPage extends Page implements PermissionProvider
             'sv-se' => 'Swedish (Sweden)',
             'tr' => 'Turkish',
             'uk' => 'Ukranian',
-        ]);
+            ]
+        );
         $languageField
             ->setHasEmptyDefault(true)
             ->setEmptyString('Select Language');
@@ -178,21 +180,34 @@ class PodcastPage extends Page implements PermissionProvider
         $explicitField = DropdownField::create('Explicit', 'Explicit', $this->dbObject('Explicit')->enumValues());
         $explicitField->setDescription("Displays an 'Explicit', 'Clean' or no parental advisory graphic next to your podcast artwork in iTunes.");
 
-        $fields->addFieldsToTab('Root.Podcast', [
-            TextField::create('PodcastTitle', 'Podcast Title'),
-            TextField::create('Subtitle'),
-            $languageField,
-            TextField::create('Author'),
-            TextAreaField::create('Summary'),
-            TextField::create('OwnerName', 'Owner Name'),
-            EmailField::create('OwnerEmail', 'Owner Email'),
-            TextField::create('Copyright'),
-            $completeField,
-            $blockField,
-            $explicitField,
-            TextAreaField::create('Categories'),
-            $podcastImage,
-        ]);
+        $categoriesField = TextAreaField::create('Categories');
+        $categoriesField
+            ->setDescription(
+                "Formatted in <a href=\"https://help.apple.com/itc/podcasts_connect/#/itcb54353390\" target=\"_blank\">iTunes RSS XML Format</a>, list of <a href=\"https://help.apple.com/itc/podcasts_connect/#/itc9267a2f12\" target=\"_blank\">available categories</a>, for example:<br>
+<pre><code>&lt;itunes:category text=&quot;Technology&quot;&gt;
+    &lt;itunes:category text=&quot;Gadgets&quot; /&gt;
+&lt;/itunes:category&gt;
+</code></pre>"
+            );
+
+        $fields->addFieldsToTab(
+            'Root.Podcast',
+            [
+                TextField::create('PodcastTitle', 'Podcast Title'),
+                $podcastImage,
+                TextField::create('Subtitle'),
+                $languageField,
+                TextField::create('Author'),
+                TextAreaField::create('Summary'),
+                TextField::create('OwnerName', 'Owner Name'),
+                EmailField::create('OwnerEmail', 'Owner Email'),
+                TextField::create('Copyright'),
+                $completeField,
+                $blockField,
+                $explicitField,
+                $categoriesField,
+            ]
+        );
 
         $config = GridFieldConfig_RelationEditor::create();
 
