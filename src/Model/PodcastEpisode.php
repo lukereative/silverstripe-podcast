@@ -28,7 +28,7 @@ class PodcastEpisode extends DataObject
     private static $db = [
         'Title' => 'Varchar(255)',
         'Subtitle' => 'Varchar(255)',
-        'Summary' => 'Text',
+        'Summary' => 'HTMLText',
         'Author' => 'Varchar(127)',
         'Block' => 'Boolean',
         'Explicit' => 'Enum("No, Clean, Yes");',

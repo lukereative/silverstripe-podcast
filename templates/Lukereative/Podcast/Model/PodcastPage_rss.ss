@@ -11,7 +11,7 @@
 <% if $Author %><itunes:author>$Author.XML</itunes:author><% end_if %>
 <% if $Summary %><itunes:summary>$Summary.NoHTML.XML</itunes:summary>
 <description>$Summary.NoHTML.XML</description><% end_if %>
-<% if $Categories %><itunes:category text="$Categories.RAW" /><% end_if %>
+<% if $Categories %>$Categories.RAW<% end_if %>
 <% if $OwnerName || $OwnerEmail %><itunes:owner>
     <% if $OwnerName %><itunes:name>$OwnerName.XML</itunes:name><% end_if %>
     <% if $OwnerEmail %><itunes:email>$OwnerEmail.XML</itunes:email><% end_if %>
