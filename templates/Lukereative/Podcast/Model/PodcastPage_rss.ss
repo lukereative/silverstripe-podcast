@@ -9,8 +9,8 @@
 <% if $Copyright %><copyright>$Copyright.XML</copyright><% end_if %>
 <% if $Subtitle %><itunes:subtitle>$Subtitle.XML</itunes:subtitle><% end_if %>
 <% if $Author %><itunes:author>$Author.XML</itunes:author><% end_if %>
-<% if $Summary %><itunes:summary>$Summary.NoHTML.XML</itunes:summary>
-<description>$Summary.NoHTML.XML</description><% end_if %>
+<% if $Summary %><itunes:summary>$Summary.Plain.XML<</itunes:summary>
+<description>$Summary.Plain.XML<</description><% end_if %>
 <% if $Categories %>$Categories.RAW<% end_if %>
 <% if $OwnerName || $OwnerEmail %><itunes:owner>
     <% if $OwnerName %><itunes:name>$OwnerName.XML</itunes:name><% end_if %>
@@ -25,8 +25,8 @@
     <% if $Title %><title>$Title.XML</title><% end_if %>
     <% if $Author %><itunes:author>$Author.XML</itunes:author><% end_if %>
     <% if $Subtitle %><itunes:subtitle>$Subtitle.XML</itunes:subtitle><% end_if %>
-    <% if $Summary %><itunes:summary>$Summary.NoHTML.XML</itunes:summary>
-    <description>$Summary.NoHTML.XML</description><% end_if %>
+    <% if $Summary %><itunes:summary>$Summary.Plain.XML<</itunes:summary>
+    <description>$Summary.Plain.XML<</description><% end_if %>
     <% if $Image %><itunes:image href="$Image.getAbsoluteURL" /><% end_if %>
     <% if $File %><enclosure url="$File.getAbsoluteURL" length="$File.getAbsoluteSize" type="$getMime" />
     <guid>$Link</guid><% end_if %>

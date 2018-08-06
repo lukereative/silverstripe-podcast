@@ -24,19 +24,22 @@ class GetID3Tags extends DataExtension
         $canEdit = $record->canEdit();
 
         if ($record instanceof PodcastEpisode && $canEdit && $record->File()->exists()) {
-            $actions->push(FormAction::create('getTags', 'Get ID3 Tags')
-                ->setUseButtonTag(true)
-                ->addExtraClass('btn-primary font-icon-tag'));
+            $actions->push(
+                FormAction::create('getTags', 'Get ID3 Tags')
+                    ->setUseButtonTag(true)
+                    ->addExtraClass('btn-primary font-icon-tag')
+            );
         }
     }
 
     public function getTags($data, $form)
     {
         $record = $this->owner->getRecord();
-        
-        if (!$record->File()->exists() ||
-            !Director::publicFolder() ||
-            !file_exists(Director::publicFolder() . $record->File()->getURL())) {
+
+        if (!$record->File()->exists()
+            || !Director::publicFolder()
+            || !file_exists(Director::publicFolder() . $record->File()->getURL())
+        ) {
             // Check if the file exists on the local filesystem
             // Show a warning if one isn't found (remote files are not supported)
             $message = [
@@ -61,7 +64,8 @@ class GetID3Tags extends DataExtension
         if ($file
             && isset($file['tags'])
             && array_key_exists('id3v2', $file['tags'])
-            && !empty($file['tags']['id3v2'])) {
+            && !empty($file['tags']['id3v2'])
+        ) {
             // If we get a valid list of tags from the file, map the tag values to the correct field
             $tags = $file['tags']['id3v2'];
 

@@ -26,6 +26,7 @@ class PodcastPageController extends ContentController
 
     /**
      * Returns the RSS Feed at the URL /rss
+     *
      * @return SiteTree
      */
     public function rss()
@@ -36,6 +37,7 @@ class PodcastPageController extends ContentController
 
     /**
      * Returns a SS_list of podcast episodes for use in the RSS template
+     *
      * @return SS_List
      */
     public function podcastEpisodes()
@@ -47,6 +49,7 @@ class PodcastPageController extends ContentController
 
     /**
      * Returns a paginated list of podcast episodes for use on the podcast page
+     *
      * @return SS_List
      */
     public function paginatedPodcastEpisodes()
@@ -63,6 +66,7 @@ class PodcastPageController extends ContentController
 
     /**
      * Returns an episode as a page based on ID parameter at the URL -> $PodcastPage/episode/$ID
+     *
      * @return SiteTree
      */
     public function episode(HTTPRequest $request)
